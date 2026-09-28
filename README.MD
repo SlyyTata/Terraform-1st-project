@@ -39,20 +39,35 @@ Using Terraform
     a null_resource is added to help with the task of clonning and uploading the files into the bucket.
 
     1st... I tried a direct approach of using this command:
+
         aws s3 scp https://github.com/cloudacademy/static-website-example.git s3://${aws_s3_bucket.terraform-static-web-s3.id}/ 
+
     Didnt work.
-    Tried aws s3 cp https://github.com/cloudacademy/static-website-example.git s3://${aws_s3_bucket.terraform-static-web-s3.id}/ 
+
+    - Tried aws s3 cp https://github.com/cloudacademy/static-website-example.git s3://${aws_s3_bucket.terraform-static-web-s3.id}/ 
+
     thinking the scp is the error so I used the cp but didnt well too.
 
+
     Finally I had to go through the normal long and not-confusing process and using the heredoc to simplify the commands;
+
         - created a dir on my local system 
+
         - git clone the repo into the dir
+
         - remove the .git dir from the files using the 
+
             rm -rf /tmp/git-to-s3-repo/.git
+
         - upload the files uisng sync 
+
          aws s3 sync /tmp/git-to-s3-repo/ s3://${aws_s3_bucket.terraform-static-web-s3.id}/
+
         - Deleting the dir from my local repo immediately the upload finishes
+
         - EndOfFile for the heredoc
+
+        
     
 
 Cheers
