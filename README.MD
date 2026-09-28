@@ -16,6 +16,9 @@ Login into the aws console
 - check the enable option and click save
 - Go back to the General purpose buckets section at the right hand side and click the bucket name once again.
 - Once inside the bucket click the upload button and upload the website files manually
+- Go back to the properties section of the newly created s3 bucket and stroll down for the static website hosting and copy the Bucket website endpoint.
+- Open the copied Bucket website endpoint on a new tab to access to static website and thats it.
+- All clear 
 
 
 
