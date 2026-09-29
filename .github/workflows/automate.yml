@@ -19,7 +19,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::305433223620:role/hub-action-role # Replace with your Role ARN
+          role-to-assume: ${{ secrets.AWS_IAM_ROLE }} # Replace with your Role ARN
           aws-region: us-east-1 # Replace with your target AWS Region
 
       - name: Verify AWS Identity
