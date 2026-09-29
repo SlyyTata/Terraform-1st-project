@@ -19,9 +19,11 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: $ {{ secrets.IAM_ROLE }} # Replace with your Role ARN
+          role-to-assume: arn:aws:iam::305433223620:role/github-actions-role # Replace with your Role ARN
           aws-region: us-east-1 # Replace with your target AWS Region
 
       - name: Verify AWS Identity
-        run:
-          aws sts get-caller-identity
+        run: aws sts get-caller-identity
+
+      - name: List the buckets
+        run: aws s3 ls
