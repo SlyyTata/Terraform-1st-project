@@ -5,25 +5,19 @@ on:
     branches:
       - main
 
-permissions:
-  id-token: write   # This is required for requesting the JWT OIDC token
-  contents: read    # This is required for actions/checkout
 
 jobs:
-  ConnectToAWS:
+  your-job-name:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # MUST BE AT JOB LEVEL OR WORKFLOW LEVEL
+      contents: read
     steps:
-      - name: Git clone repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.ROLE }} # Replace with your Role ARN
-          aws-region: us-east-1 # Replace with your target AWS Region
-
-      - name: Verify AWS Identity
-        run: aws sts get-caller-identity
-
-      - name: List the buckets
-        run: aws s3 ls
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          aws-region: us-east-1
