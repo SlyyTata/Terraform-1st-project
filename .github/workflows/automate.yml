@@ -23,5 +23,5 @@ jobs:
           aws-region: us-east-1 # Replace with your target AWS Region
 
       - name: Verify AWS Identity
-        run: |
+        run:
           aws sts get-caller-identity
