@@ -9,7 +9,7 @@ jobs:
   your-job-name:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write  # MUST BE AT JOB LEVEL OR WORKFLOW LEVEL
+      id-token: write  
       contents: read
     steps:
       - name: Checkout repo
@@ -20,3 +20,20 @@ jobs:
         with:
           role-to-assume: ${{ secrets.KEY_ROLE }}
           aws-region: us-east-1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.0"
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Terraform Apply
+        run: terraform apply
