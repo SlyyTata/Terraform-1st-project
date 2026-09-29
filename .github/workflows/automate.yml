@@ -17,9 +17,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4.1.0
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::305433223620:role/github-action-role # Replace with your Role ARN
+          role-to-assume: $ {{ secrets.IAM_ROLE }} # Replace with your Role ARN
           aws-region: us-east-1 # Replace with your target AWS Region
 
       - name: Verify AWS Identity
