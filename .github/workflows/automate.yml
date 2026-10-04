@@ -1,4 +1,4 @@
-name: Deploy to AWS
+name: Run terraform plan and apply upon every push to main branch
 
 on:
   push:
